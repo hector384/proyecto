@@ -1,0 +1,13 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.github.jellyfin:jellyfin-apiclient-java:0.6.0'
+}

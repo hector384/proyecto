@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<plugin xmlns="http://phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="org.jellyfin.mobile"
+    version="1.0.0">
+  <engines>
+    <engine name="cordova" version=">=7.0.0" />
+  </engines>
+  <name>Jellyfin</name>
+  <js-module src="www/nativeshell.js" name="NativeShell">
+    <clobbers target="NativeShell" />
+  </js-module>
+  <js-module src="www/apphost.js" name="AppHost">
+    <clobbers target="NativeShell.AppHost" />
+  </js-module>
+  <js-module src="www/filesystem.js" name="FileSystem">
+    <clobbers target="NativeShell.FileSystem" />
+  </js-module>
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="NativeShell">
+        <param name="android-package" value="org.jellyfin.mobile.NativeShell" />
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.WAKE_LOCK" />
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <service android:name="org.jellyfin.mobile.RemotePlayerService" />
+      <activity android:label="ExoPlayer" android:name="org.jellyfin.mobile.exoplayer.ExoPlayerActivity" android:configChanges="orientation|screenSize|layoutDirection"></activity>
+    </config-file>
+    <source-file src="src/NativeShell.java" target-dir="src/org/jellyfin/mobile" />
+    <source-file src="src/AppPreferences.java" target-dir="src/org/jellyfin/mobile" />
+    <source-file src="src/RemotePlayerService.java" target-dir="src/org/jellyfin/mobile" />
+    <source-file src="src/Constants.java" target-dir="src/org/jellyfin/mobile" />
+    <source-file src="src/exoplayer/ExoPlayer.java" target-dir="src/org/jellyfin/mobile/exoplayer" />
+    <source-file src="src/exoplayer/ExoPlayerActivity.java" target-dir="src/org/jellyfin/mobile/exoplayer" />
+    <source-file src="src/exoplayer/ExoPlayerEventListener.java" target-dir="src/org/jellyfin/mobile/exoplayer" />
+    <source-file src="src/exoplayer/ExoPlayerFormats.java" target-dir="src/org/jellyfin/mobile/exoplayer" />
+    <source-file src="src/exoplayer/ExoPlayerCodec.java" target-dir="src/org/jellyfin/mobile/exoplayer" />
+    <framework src="src/build.gradle" custom="true" type="gradleReference" />
+    <framework src="com.squareup.okhttp3:okhttp:3.13.1" />
+    <framework src="com.squareup.okhttp3:okhttp-urlconnection:3.13.1" />
+    <framework src="com.google.android.exoplayer:exoplayer:2.10.6" />
+    <resource-file src="res/drawable-hdpi/ic_notification.png" target="res/drawable-hdpi/ic_notification.png" />
+    <resource-file src="res/drawable-ldpi/ic_notification.png" target="res/drawable-ldpi/ic_notification.png" />
+    <resource-file src="res/drawable-mdpi/ic_notification.png" target="res/drawable-mdpi/ic_notification.png" />
+    <resource-file src="res/drawable-xhdpi/ic_notification.png" target="res/drawable-xhdpi/ic_notification.png" />
+    <resource-file src="res/drawable-xxhdpi/ic_notification.png" target="res/drawable-xxhdpi/ic_notification.png" />
+    <resource-file src="res/drawable-xxxhdpi/ic_notification.png" target="res/drawable-xxxhdpi/ic_notification.png" />
+    <resource-file src="res/values/colors.xml" target="res/values/colors.xml" />
+    <resource-file src="res/values/preferences.xml" target="res/values/preferences.xml" />
+    <resource-file src="res/values/translate.xml" target="res/values/translate.xml" />
+    <resource-file src="res/values-de/translate.xml" target="res/values-de/translate.xml" />
+    <resource-file src="res/values-fr/translate.xml" target="res/values-fr/translate.xml" />
+    <resource-file src="res/values-pt-rBR/translate.xml" target="res/values-pt-rBR/translate.xml" />
+    <resource-file src="res/values-bg/translate.xml" target="res/values-bg/translate.xml" />
+    <resource-file src="res/values-es/translate.xml" target="res/values-es/translate.xml" />
+    <resource-file src="res/values-fi/translate.xml" target="res/values-fi/translate.xml" />
+    <resource-file src="res/values-hu/translate.xml" target="res/values-hu/translate.xml" />
+    <resource-file src="res/values-it/translate.xml" target="res/values-it/translate.xml" />
+    <resource-file src="res/values-nb-rNO/translate.xml" target="res/values-nb-rNO/translate.xml" />
+    <resource-file src="res/values-nl/translate.xml" target="res/values-nl/translate.xml" />
+    <resource-file src="res/values-ro/translate.xml" target="res/values-ro/translate.xml" />
+    <resource-file src="res/values-sk/translate.xml" target="res/values-sk/translate.xml" />
+    <resource-file src="res/values-sl/translate.xml" target="res/values-sl/translate.xml" />
+    <resource-file src="res/values-uk/translate.xml" target="res/values-uk/translate.xml" />
+    <resource-file src="res/layout/exoplayer.xml" target="res/layout/exoplayer.xml" />
+  </platform>
+</plugin>

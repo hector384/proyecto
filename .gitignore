@@ -1,0 +1,12 @@
+# Cordova
+plugins
+platforms
+www
+
+# JavaScript
+node_modules
+package-lock.json
+
+# Android Studio
+.idea
+*.iml
